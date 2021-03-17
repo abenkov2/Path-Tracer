@@ -18,19 +18,23 @@ Color3f FullLightingIntegrator::Li(const Ray &ray, const Scene &scene, std::shar
         Intersection isect;
         bool foundIntersection = scene.Intersect(r, &isect);
 
-        if (!foundIntersection)
+
+        if (depth == maxDepth || specularBounce)
         {
-            break;
+            if (foundIntersection)
+            {
+                L += beta * isect.Le(-r.direction);
+            } else {
+                for (const auto &light : scene.lights)
+                {
+                    L += beta * light->Le(ray);
+                }
+            }
         }
 
-        bool hasBSDF = isect.ProduceBSDF();
-        if (depth == maxDepth || !hasBSDF || specularBounce)
+        if (!foundIntersection || !isect.ProduceBSDF())
         {
-            L += beta * isect.Le(-r.direction);
-            if (!hasBSDF)
-            {
-                break;
-            }
+            break;
         }
 
         Vector3f wo = -r.direction, wi;
@@ -60,12 +64,12 @@ Color3f FullLightingIntegrator::Li(const Ray &ray, const Scene &scene, std::shar
                 Ray vis = isect.SpawnRay(wi);
                 bool hitSurface = scene.Intersect(vis, &isect2);
 
-                if (!hitSurface || (!isect2.ProduceBSDF() && isect2.objectHit->GetAreaLight() != light.get()))
+                if (!hitSurface || (isect2.objectHit->GetAreaLight() != light.get()))
                 {
                    Li = Color3f(0.f);
                 }
 
-                if (!IsBlack((Li)))
+                if (!IsBlack(Li))
                 {
                     //comment out power heuristic line and uncomment balance heuristic line as needed to test either:
                     Float weight = PowerHeuristic(1, lightPdf, 1, brdfPdf);
@@ -123,7 +127,7 @@ Color3f FullLightingIntegrator::Li(const Ray &ray, const Scene &scene, std::shar
         }
 
         //Ray bounce and global illumination
-
+        L += beta * Ld;
 
         Float pdf;
         BxDFType flags;
@@ -137,18 +141,19 @@ Color3f FullLightingIntegrator::Li(const Ray &ray, const Scene &scene, std::shar
         specularBounce = (flags & BSDF_SPECULAR) != 0;
         r = isect.SpawnRay(wi_n);
 
-
-        L += beta * Ld;
         //Russian roulette check
-        Float lum = std::max(beta.x, std::max(beta.y, beta.z));
-        Float q = std::max((Float).05, 1 - lum);
-        if (sampler->Get1D() < q)
+        if (depth < maxDepth - 3)
         {
-            break;
+            Float lum = std::max(beta.x, std::max(beta.y, beta.z));
+            Float q = std::max((Float).05, 1 - lum);
+            if (sampler->Get1D() < q)
+            {
+                break;
+            }
+            beta /= 1 - q;
         }
-        beta /= 1 - q;
 
-        depth--;
+        --depth;
     }
 
     return L;
