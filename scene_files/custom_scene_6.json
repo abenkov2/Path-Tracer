@@ -1,0 +1,244 @@
+{
+  "frames" :[
+    {
+    "frameNumber" : 0,
+    "scene" : {
+      "camera" : {
+        "target" : [0, 2.5, 0],
+        "eye" : [0, 5.5, -30],
+        "worldUp" : [0, 1, 0],
+        "fov" : 19.5,
+        "width" : 512,
+        "height": 512
+      },
+      "primitives" : [
+        {
+          "shape" : "SquarePlane",
+          "name" : "Floor",
+          "material" : "Tiles",
+          "transform" : {
+            "translate" : [0, -2.5, 0],
+            "rotate" : [-90, 0, 0],
+            "scale" : [10, 62, 1]
+          }
+        },
+        {
+          "shape" : "SquarePlane",
+          "name" : "left wall",
+          "material" : "Tiles",
+          "transform" : {
+            "translate" : [5,2.5,0],
+            "rotate" : [0, -90, 0],
+            "scale" : [31, 10, 1]
+          }
+        },
+        {
+          "shape" : "SquarePlane",
+          "name" : "right wall",
+          "material" : "Tiles",
+          "transform" : {
+            "translate" : [-5, 2.5, 0],
+            "rotate" : [0,90,0],
+            "scale" : [31, 10, 1]
+          }
+        },
+        {
+          "shape" : "SquarePlane",
+          "name" : "Back Wall",
+          "material" : "Marble",
+          "transform" : {
+            "translate" : [0,2.5,5],
+            "rotate" : [0,180,0],
+            "scale" : [10, 10, 1]
+          }
+        },
+        {
+          "shape" : "SquarePlane",
+          "name" : "Front Wall",
+          "material" : "matteWhite",
+          "transform" : {
+            "translate" : [0,2.5,-31],
+            "rotate" : [0,-180,0],
+            "scale" : [10, 10, 1]
+          }
+        },
+        {
+          "shape" : "SquarePlane",
+          "name" : "Ceiling Wall",
+          "material" : "Tiles",
+          "transform" : {
+            "translate" : [0, 7.5, 0],
+            "rotate" : [90,0,0],
+            "scale" : [10, 62, 1]
+          }
+        },
+        {
+          "shape" : "Sphere",
+          "name" : "glass sphere",
+          "material" : "blueGlass",
+          "transform" : {
+            "translate" : [0, 0, 0],
+            "rotate" : [0,0,0],
+            "scale" : [1.5, 1.5, 1.5]
+          }
+        },
+        {
+          "shape" : "Disc",
+          "name" : "glass disc",
+          "material" : "transmissiveMaterial2",
+          "transform" : {
+            "translate" : [0, 2.5, 0],
+            "rotate" : [-90,-20,0],
+            "scale" : [5, 5, 1]
+          }
+        },
+        {
+          "shape" : "Sphere",
+          "name" : "gold sphere",
+          "material" : "dirtyGold",
+          "transform" : {
+            "translate" : [0, 4.5, 0],
+            "rotate" : [0,0,0],
+            "scale" : [1, 1, 1]
+          }
+        }
+      ],
+      "lights" : [
+        {
+          "shape" : "Disc",
+          "name" : "disc light 1",
+          "type" : "DiffuseAreaLight",
+          "lightColor" : [29,15,20],
+          "intensity" : 1,
+          "transform" : {
+            "translate" : [0,-2.45,0],
+            "rotate" : [-90,0,0],
+            "scale" : [2, 2, 2]
+          },
+          "isDelta" : false,
+          "twoSided" : true
+        }
+      ],
+      "materials" : [
+        {
+          "type" : "MatteMaterial",
+          "name" : "matteWhite",
+            "Kd" : [0.85, 0.81, 0.78],
+          "sigma": 15
+        },
+        {
+          "type" : "MatteMaterial",
+          "name" : "matteRed",
+          "Kd" : [0.63, 0.065, 0.05],
+          "sigma": 30
+        },
+        {
+          "type" : "MatteMaterial",
+          "name" : "matteGreen",
+          "Kd" : [0.14, 0.45, 0.091],
+          "sigma": 30
+        },
+        {
+          "type": "MatteMaterial",
+          "name": "texturedMaterial",
+          "Kd": [1, 1, 1],
+          "sigma": 30,
+          "textureMap": "tex_nor_maps/brick.jpg",
+          "normalMap": "tex_nor_maps/brickN.jpg"
+        },
+        {
+          "type": "MatteMaterial",
+          "name": "Stone",
+          "Kd": [1, 1, 1],
+          "sigma": 30,
+          "textureMap": "tex_nor_downloaded_maps/Rock020_4K_Color.jpg",
+          "normalMap": "tex_nor_downloaded_maps/Rock020_4K_Normal.jpg"
+        },
+        {
+          "type": "MatteMaterial",
+          "name": "Wood",
+          "Kd": [1, 1, 1],
+          "sigma": 10,
+          "textureMap": "tex_nor_downloaded_maps/WoodFloor035_4K_Color.jpg",
+          "normalMap": "tex_nor_downloaded_maps/WoodFloor035_4K_Normal.jpg"
+        },
+        {
+          "type": "MatteMaterial",
+          "name": "Tiles",
+          "Kd": [1, 1, 1],
+          "sigma": 20,
+          "textureMap": "tex_nor_downloaded_maps/Blue_tiles_01_4K_Base_Color.png",
+          "normalMap": "tex_nor_downloaded_maps/Blue_tiles_01_4K_Normal.png"
+        },
+        {
+          "type": "MatteMaterial",
+          "name": "Marble",
+          "Kd": [1, 1, 1],
+          "sigma": 5,
+          "textureMap": "tex_nor_downloaded_maps/Marble_03_4K_Base_Color.png",
+          "normalMap": "tex_nor_downloaded_maps/Marble_03_4K_Normal.png"
+        },
+        {
+          "type": "GlassMaterial",
+          "name": "transmissiveMaterial",
+          "Kt": [0.9, 0.9, 1],
+          "Kr": [1, 1, 0.2],
+          "eta": 1.55
+        },
+        {
+          "type": "GlassMaterial",
+          "name": "transmissiveMaterial2",
+          "Kt": [0.8, 0.8, 1],
+          "Kr": [1, 0.6, 0.2],
+          "eta": 1.40
+        },
+        {
+          "type": "GlassMaterial",
+          "name": "pinkGlass",
+          "Kt": [1, 0.4, 0.7],
+          "Kr": [1, 1, 0.2],
+          "eta": 1.52
+        },
+        {
+          "type": "GlassMaterial",
+          "name": "blueGlass",
+          "Kt": [0.4, 0.4, 1],
+          "Kr": [0.2, 0.4, 1],
+          "eta": 1.47
+        },
+        {
+          "type": "GlassMaterial",
+          "name": "greenGlass",
+          "Kt": [0.4, 1, 0.4],
+          "Kr": [1, 1, 0.2],
+          "eta": 1.6
+        },
+        {
+          "type": "MirrorMaterial",
+          "name": "chromeMirror",
+          "Kr": [1, 1, 1],
+          "roughness": 0.05
+        },
+        {
+          "type": "MirrorMaterial",
+          "name": "gold",
+          "Kr": [1, 1, 1],
+          "roughness": 0.03,
+          "textureMap": "tex_nor_downloaded_maps/Metal034_4K_Color.jpg",
+          "normalMap": "tex_nor_downloaded_maps/Metal034_4K_Normal.jpg",
+          "roughnessMap": "tex_nor_downloaded_maps/Metal034_4K_Roughness.jpg"
+        },
+        {
+          "type": "MirrorMaterial",
+          "name": "dirtyGold",
+          "Kr": [1, 1, 1],
+          "roughness": 0.04,
+          "textureMap": "tex_nor_downloaded_maps/Dirty_gold_01_4K_Base_Color.png",
+          "normalMap": "tex_nor_downloaded_maps/Dirty_gold_01_4K_Normal.png",
+          "roughnessMap": "tex_nor_downloaded_maps/Dirty_gold_01_4K_Roughness.png"
+        }
+      ]
+    }
+  }
+]
+}

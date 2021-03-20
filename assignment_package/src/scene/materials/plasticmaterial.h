@@ -11,7 +11,7 @@ public:
                   const std::shared_ptr<QImage> &specularColorMap,
                   const std::shared_ptr<QImage> &normalMap)
         : Kd(Kd), Ks(Ks), roughness(roughness),
-          roughnessMap(roughnessMap), diffuseColorMap(diffuseColorMap), normalMap(normalMap)
+          roughnessMap(roughnessMap), diffuseColorMap(diffuseColorMap), specularColorMap(specularColorMap), normalMap(normalMap)
     {}
 
     void ProduceBSDF(Intersection *isect) const;
