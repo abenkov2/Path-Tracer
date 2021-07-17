@@ -1,11 +1,11 @@
-Path Tracer Part IV: Global Illumination
+Global Illumination Path Tracer
 ======================
 
-**University of Pennsylvania, CIS 561: Advanced Computer Graphics, Homework 7**
+**Project for University of Pennsylvania, CIS 561: Advanced Computer Graphics**
 
-Name: Ari Benkov
+Ari Benkov
 ------------
-PennKey: 64120499
+Spring 2021
 ------------
 
 Results:
